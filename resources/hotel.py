@@ -42,16 +42,16 @@ class Hotel(Resource):
     def post(self, hotel_id):
         argumentos = reqparse.RequestParser()
         argumentos.add_argument('nome')
-        argumentos.add_argument('estrelas')
-        argumentos.add_argument('diaria')
+        argumentos.add_argument('estrelas', type=float)
+        argumentos.add_argument('diaria', type=float)
         argumentos.add_argument('cidade')
 
         dados = argumentos.parse_args()
         novo_hotel = {
             'hotel_id': hotel_id,
             'nome': dados['nome'],
-            'estrelas': float(dados['estrelas']),
-            'diaria': float(dados['diaria']),
+            'estrelas': dados['estrelas'],
+            'diaria': dados['diaria'],
             'cidade': dados['cidade']
         }
 
