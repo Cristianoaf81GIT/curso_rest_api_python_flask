@@ -1,0 +1,11 @@
+@baseurl=http://localhost:5000
+
+POST {{baseurl}}/hoteis/gama
+Content-Type: application/json
+
+{
+  "nome": "gama Hotel",
+  "estrelas": 4.1,
+  "diaria": 220.2,
+  "cidade": "Pato de Minas"
+}
