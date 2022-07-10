@@ -1,0 +1,10 @@
+@baseurl=http://localhost:5000
+PUT {{baseurl}}/hoteis/echo
+Content-Type: application/json
+
+{
+  "nome": "Echo Hotel",
+  "estrelas": 4.1,
+  "diaria": 220.2,
+  "cidade": "Sao Paulo"
+}
