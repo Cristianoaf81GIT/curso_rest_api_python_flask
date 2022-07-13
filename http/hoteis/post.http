@@ -1,11 +1,11 @@
 @baseurl=http://localhost:5000
 
-POST {{baseurl}}/hoteis/gama
+POST {{baseurl}}/hoteis/bravo
 Content-Type: application/json
 
 {
-  "nome": "gama Hotel",
-  "estrelas": 4.1,
-  "diaria": 220.2,
-  "cidade": "Pato de Minas"
+  "nome": "Bravo Hotel",
+  "estrelas": 4.4,
+  "diaria": 520.2,
+  "cidade": "Rio de Janeiro"
 }
