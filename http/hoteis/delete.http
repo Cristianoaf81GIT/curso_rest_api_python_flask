@@ -1,2 +1,2 @@
-@baseurl=http://localhost:5000
-DELETE {{baseurl}}/hoteis/bravo
+DELETE http://localhost:5000/hoteis/echo HTTP/1.1
+Host: localhost:5000

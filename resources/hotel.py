@@ -45,12 +45,6 @@ class Hotel(Resource):
 
     argumentos.add_argument('cidade', required=True)
 
-    def find_hotel(hotel_id):
-        for hotel in hoteis:
-            if hotel['hotel_id'] == hotel_id:
-                return hotel
-        return None
-
     def get(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id=hotel_id)
         if hotel:
@@ -78,6 +72,10 @@ class Hotel(Resource):
         return hotel.json(), 201
 
     def delete(self, hotel_id):
-        global hoteis
-        hoteis = [hotel for hotel in hoteis if hotel['hotel_id'] != hotel_id]
-        return {'message': 'hotel: ' + hotel_id + ' was deleted.'}
+        hotel = HotelModel.find_hotel(hotel_id)
+        if hotel:
+            hotel.delete_hotel()            
+            return {'message': 'hotel: ' + hotel_id + ' was deleted.'}
+        return {'message': 'hotel not found'}, 404
+
+
