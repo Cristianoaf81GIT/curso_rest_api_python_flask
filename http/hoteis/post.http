@@ -1,11 +1,11 @@
-POST http://localhost:5000/hoteis/delta HTTP/1.1
+POST http://localhost:5000/hoteis/epsilon HTTP/1.1
 Host: localhost:5000
-Content-Length: 99
 Content-Type: application/json
+Content-Length: 85
 
 {
-  "nome": "Delta Hotel",
-  "estrelas": 4.2,
+  "nome": "Hotel epsilon", 
+  "estrelas": 4.1, 
   "diaria": 320.2,
   "cidade": "Brazopolis MG"
 }
