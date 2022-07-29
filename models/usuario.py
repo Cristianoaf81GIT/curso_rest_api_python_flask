@@ -2,7 +2,6 @@
 from sql_alchemy import banco
 from flask_bcrypt_util import bcrypt
 
-
 class UserModel(banco.Model):
     __tablename__ = 'usuarios'
 
@@ -24,6 +23,13 @@ class UserModel(banco.Model):
     @classmethod
     def find_user(cls, user_id):
         user = cls.query.filter_by(user_id=user_id).first()
+        if user:
+            return user
+        return None
+
+    @classmethod
+    def find_by_login(cls, login):
+        user = cls.query.filter_by(login=login).first()
         if user:
             return user
         return None
