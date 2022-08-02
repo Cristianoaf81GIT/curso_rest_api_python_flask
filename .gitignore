@@ -1,3 +1,5 @@
 ambvir
 ambvir/
 hotel.db
+.env
+*.swp
