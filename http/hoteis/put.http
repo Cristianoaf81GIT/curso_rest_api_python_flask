@@ -2,6 +2,7 @@ PUT http://localhost:5000/hoteis/echo HTTP/1.1
 Host: localhost:5000
 Content-Length: 94
 Content-Type: application/json
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1OTg4MzA0MSwianRpIjoiNTljNWM5NjYtZDQyNy00YWM5LWEzODYtZGJlMmJkYTJiZWQ0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjU5ODgzMDQxLCJleHAiOjE2NTk4ODM5NDF9.ul8C0iIR9QCxHHsq5zITNmeEMruGbBVPrmXHISgtRro
 
 {
   "nome": "Echo Hotel",

@@ -2,7 +2,16 @@
 from flask_restful import Resource, reqparse
 from models.usuario import UserModel
 from flask_bcrypt_util import bcrypt 
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required 
+
+
+"""
+" anotations:
+" @jwt_required()
+" @jwt.token_in_block_loader
+" get_jwt
+" verificar_blacklist(self, token)
+"""
 
 atributos = reqparse.RequestParser()
 atributos.add_argument('login',
@@ -19,7 +28,8 @@ class User(Resource):
             return user.json()
 
         return {'message': 'User not found.'}, 404  # status code
-
+    
+    @jwt_required()
     def delete(self, user_id):
         user = UserModel.find_user(user_id)
         if user:

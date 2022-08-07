@@ -1,10 +1,11 @@
-POST http://localhost:5000/hoteis/epsilon HTTP/1.1
+POST http://localhost:5000/hoteis/monfredini HTTP/1.1
 Host: localhost:5000
-Content-Type: application/json
-Content-Length: 85
+Content-Type: application/json 
+Content-Length: 106
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1OTg4Mjc2MCwianRpIjoiMjBiYjMzNTQtNGQ5YS00MGRjLTlmODMtNWJhNjU0OTQzNzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjU5ODgyNzYwLCJleHAiOjE2NTk4ODM2NjB9.mr4WUxwpSprQRk_XRME4vvVtSw8O6o4mDQ4u_IlZCKg
 
 {
-  "nome": "Hotel epsilon", 
+  "nome": "Hotel monfredini", 
   "estrelas": 4.1, 
   "diaria": 320.2,
   "cidade": "Brazopolis MG"
