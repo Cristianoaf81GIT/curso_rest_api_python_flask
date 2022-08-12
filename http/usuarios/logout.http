@@ -1,1 +1,5 @@
 POST http://localhost:5000/logout HTTP/1.1
+Host: localhost:5000
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MDMwMDk0MCwianRpIjoiZGY0YzM4YmUtODJjNC00NTYzLWE4NDYtYzA3ZmQwYjJlYzI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYwMzAwOTQwLCJleHAiOjE2NjAzMDE4NDB9.EBNbqciSsHYAyzmEOHLexEW6uC5WrNepTkmK1HJzaVM
+
+

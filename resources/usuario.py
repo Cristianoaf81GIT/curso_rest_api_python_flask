@@ -2,7 +2,8 @@
 from flask_restful import Resource, reqparse
 from models.usuario import UserModel
 from flask_bcrypt_util import bcrypt 
-from flask_jwt_extended import create_access_token, jwt_required 
+from flask_jwt_extended import create_access_token, jwt_required, get_jti, get_jwt 
+from blacklist import BLACKLIST
 
 
 """
@@ -66,3 +67,11 @@ class UserLogin(Resource):
         return {'message': 'The username or password is incorrect'}, 401
 
 
+class UserLogout(Resource):
+
+    @jwt_required()
+    def post(self):
+        jwt_id = get_jwt()['jti'] #jwt token indentifier
+        if len(jwt_id) > 0:
+            BLACKLIST.add(jwt_id)
+        return {'message': 'Logged out successfuly!'}, 200
