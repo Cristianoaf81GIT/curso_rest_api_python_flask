@@ -4,6 +4,6 @@ Content-Type: application/json
 Content-Length: 45
 
 {
-  "login": "deleteme",
+  "login": "admin",
   "senha": "abcde"
 }

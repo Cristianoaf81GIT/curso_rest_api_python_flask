@@ -1,4 +1,4 @@
-GET http://localhost:5000/hoteis HTTP/1.1
+GET http://localhost:5000/hoteis?cidade=Brazopolis+MG&estrelas_min=1&estrelas_max=5&limit=10&offset=0&diaria_max=350 HTTP/1.1
 Host: localhost:5000
 
 

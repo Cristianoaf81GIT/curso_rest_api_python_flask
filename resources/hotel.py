@@ -2,24 +2,62 @@
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
 from flask_jwt_extended  import jwt_required
-import sqlite3
+
+
+def normalize_path_params(cidade=None,estrelas_min=0,estrelas_max=5,diaria_min=0,diaria_max=10000,limit=50,offset=0, **dados):
+    if cidade:
+        return {
+            'estrelas_min': estrelas_min,
+            'estrelas_max': estrelas_max,
+            'diaria_min': diaria_min,
+            'diaria_max': diaria_max,
+            'cidade': cidade,
+            'limit': 50,
+            'offset': 0
+            }
+  
+    return {
+            'estrelas_min': estrelas_min,
+            'estrelas_max': estrelas_max,
+            'diaria_min': diaria_min,
+            'diaria_max': diaria_max,
+            'limit': 50,
+            'offset': 0,
+            }
+
 
 # path /hoteis?cidade=nome_cidade&estrelas_min=num_estrelas&estrelas_max=num_estrelas&limit=num_de_registros&offset=controle_listagem
-path_params = reqparse.RequestParser()
-path_params.add_argument('cidade', type=str)
-path_params.add_argument('estrelas_min', type=float)
-path_params.add_argument('estrelas_max', type=float)
-path_params.add_argument('diaria_min', type=float)
-path_params.add_argument('diaria_max', type=float)
-path_params.add_argument('limit', type=int)
-path_params.add_argument('offset', type=int)
-
 class Hoteis(Resource):
-    def get(self):
-        dados = path_params.parse_args()
-        dados_validos = {chave:dados[chave] for chave in dados if dados[chave] is not None}
-        # select * from hotel
-        return {'hoteis': [hotel.json() for hotel in  HotelModel.query.all()]}
+    path_params = reqparse.RequestParser()
+    path_params.add_argument('cidade', type=str, default="", location="args")
+    path_params.add_argument('estrelas_min', type=float, default=0, location="args")
+    path_params.add_argument('estrelas_max', type=float, default=0, location="args")
+    path_params.add_argument('diaria_min', type=float, default=0, location="args")
+    path_params.add_argument('diaria_max', type=float, default=0, location="args")
+    path_params.add_argument('limit', type=float, default=0, location="args")
+    path_params.add_argument('offset', type=float, default=0, location="args")
+
+    def get(self):        
+        filters = Hoteis.path_params.parse_args()
+ 
+        query = HotelModel.query
+ 
+        if filters["cidade"]:
+            query = query.filter(HotelModel.cidade == filters["cidade"])
+        if filters["estrelas_min"]:
+            query = query.filter(HotelModel.estrelas >= filters["estrelas_min"])
+        if filters["estrelas_max"]:
+            query = query.filter(HotelModel.estrelas <= filters["estrelas_max"])
+        if filters["diaria_min"]:
+            query = query.filter(HotelModel.diaria >= filters["diaria_min"])
+        if filters["diaria_max"]:
+            query = query.filter(HotelModel.diaria <= filters["diaria_max"])
+        if filters["limit"]:
+            query = query.limit(filters["limit"])
+        if filters["offset"]:
+            query = query.offset(filters["offset"])
+ 
+        return {"hoteis": [hotel.json() for hotel in query]}
 
 
 class Hotel(Resource):
