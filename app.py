@@ -8,6 +8,7 @@ from os import environ
 from blacklist import BLACKLIST
 
 app = Flask(__name__)
+app.config['FLASK_DEBUG']=True
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET')

@@ -4,28 +4,6 @@ from models.hotel import HotelModel
 from flask_jwt_extended  import jwt_required
 
 
-def normalize_path_params(cidade=None,estrelas_min=0,estrelas_max=5,diaria_min=0,diaria_max=10000,limit=50,offset=0, **dados):
-    if cidade:
-        return {
-            'estrelas_min': estrelas_min,
-            'estrelas_max': estrelas_max,
-            'diaria_min': diaria_min,
-            'diaria_max': diaria_max,
-            'cidade': cidade,
-            'limit': 50,
-            'offset': 0
-            }
-  
-    return {
-            'estrelas_min': estrelas_min,
-            'estrelas_max': estrelas_max,
-            'diaria_min': diaria_min,
-            'diaria_max': diaria_max,
-            'limit': 50,
-            'offset': 0,
-            }
-
-
 # path /hoteis?cidade=nome_cidade&estrelas_min=num_estrelas&estrelas_max=num_estrelas&limit=num_de_registros&offset=controle_listagem
 class Hoteis(Resource):
     path_params = reqparse.RequestParser()
