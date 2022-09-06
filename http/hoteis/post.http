@@ -1,12 +1,13 @@
-POST http://localhost:5000/hoteis/fox HTTP/1.1
+POST http://localhost:5000/hoteis/etna HTTP/1.1
 Host: localhost:5000
 Content-Type: application/json 
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MDMwMjE1MywianRpIjoiNDExODkzN2ItNjNmYy00NDUwLWI5NjktZWM5ZDMzYWEyZGI4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYwMzAyMTUzLCJleHAiOjE2NjAzMDMwNTN9.IgJyQdWbJIhDmVq7FQ4J-_loxKOwr5CgVj3Wp0PT7EQ
-Content-Length: 99
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MjUwMDkzOCwianRpIjoiMjkwMmRlZDktYmFiNi00YjdmLThjMDAtN2YzY2Q2YTRkMmZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYyNTAwOTM4LCJleHAiOjE2NjI1MDE4Mzh9.Esw2CJnU1nmALsI1QB6NOyPTZ1Z1PeXp7UkjJ8FH9JQ
+Content-Length: 121
 
 {
-  "nome": "Hotel fox", 
-  "estrelas": 4.1, 
-  "diaria": 320.2,
-  "cidade": "Brazopolis MG"
+  "nome": "Hotel Etna", 
+  "estrelas": 3, 
+  "diaria": 60.75,
+  "cidade": "Piranguinho MG",
+  "site_id": 2
 }

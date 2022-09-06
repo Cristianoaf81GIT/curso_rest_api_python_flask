@@ -53,6 +53,9 @@ class Hotel(Resource):
     argumentos.add_argument('cidade', 
             required=True, type=str, help="the field 'cidade' cannot left blank")
 
+    argumentos.add_argument('site_id', 
+                            required=True, type=int, help="field 'site_id' is required!")
+
     def get(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id=hotel_id)
         if hotel:
