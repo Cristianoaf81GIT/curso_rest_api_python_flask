@@ -26,7 +26,7 @@ class Site(Resource):
             }, 500
         return site.json()
 
-    def delete(self,url):
+    def delete(self,url):        
         site = SiteModel.find_site(url)
         if site:
             site.delete_site()

@@ -1,13 +1,13 @@
-POST http://localhost:5000/hoteis/etna HTTP/1.1
+POST http://localhost:5000/hoteis/magnaplace HTTP/1.1
 Host: localhost:5000
 Content-Type: application/json 
-Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MjUwMDkzOCwianRpIjoiMjkwMmRlZDktYmFiNi00YjdmLThjMDAtN2YzY2Q2YTRkMmZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYyNTAwOTM4LCJleHAiOjE2NjI1MDE4Mzh9.Esw2CJnU1nmALsI1QB6NOyPTZ1Z1PeXp7UkjJ8FH9JQ
-Content-Length: 121
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MzAyODYwNywianRpIjoiMzMxNTA5OTctMTk0ZC00ZWEyLWEzMDMtYjI4NWYwYTYzN2Q4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYzMDI4NjA3LCJleHAiOjE2NjMwMjk1MDd9.bdKGHiItDUmQG3dL6BOvbtk2GQeUmizYqi5AFKH4f6w
+Content-Length: 123
 
 {
-  "nome": "Hotel Etna", 
+  "nome": "Hotel Magna Place", 
   "estrelas": 3, 
   "diaria": 60.75,
   "cidade": "Piranguinho MG",
-  "site_id": 2
+  "site_id": 4
 }

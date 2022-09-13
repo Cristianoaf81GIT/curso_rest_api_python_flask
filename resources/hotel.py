@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
+from models.site import SiteModel
 from flask_jwt_extended  import jwt_required
 
 
