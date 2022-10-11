@@ -1,13 +1,13 @@
-POST http://localhost:5000/hoteis/magnaplace HTTP/1.1
+POST http://localhost:5000/hoteis/places HTTP/1.1
 Host: localhost:5000
 Content-Type: application/json 
-Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2MzAyODYwNywianRpIjoiMzMxNTA5OTctMTk0ZC00ZWEyLWEzMDMtYjI4NWYwYTYzN2Q4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjYzMDI4NjA3LCJleHAiOjE2NjMwMjk1MDd9.bdKGHiItDUmQG3dL6BOvbtk2GQeUmizYqi5AFKH4f6w
-Content-Length: 123
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY2NTQ4NDE2NywianRpIjoiNmRhYTFhOTEtODY5Ni00N2Q5LTgxOWQtNjI5YmJkMTQyZjRjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNjY1NDg0MTY3LCJleHAiOjE2NjU0ODUwNjd9.BWuUEpQIkg8GL0tQoXmm3-orxub_Gh_sTsUQpE3gPbk
+Content-Length: 118
 
 {
-  "nome": "Hotel Magna Place", 
-  "estrelas": 3, 
-  "diaria": 60.75,
-  "cidade": "Piranguinho MG",
-  "site_id": 4
+  "nome": "Hotel Places", 
+  "estrelas": 5, 
+  "diaria": 1160.25,
+  "cidade": "Rio de Janeiro RJ",
+  "site_id": 2
 }

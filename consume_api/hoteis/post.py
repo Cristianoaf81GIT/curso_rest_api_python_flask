@@ -6,7 +6,7 @@ import requests
 
 endpoint_cadastro = 'http://localhost:5000/cadastro'
 body_cadastro = {
-    'login': 'josef',
+    'login': 'admin',
     'senha': 'abcde'
 }
 

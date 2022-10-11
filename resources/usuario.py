@@ -58,8 +58,12 @@ class UserLogin(Resource):
     @classmethod
     def post(cls):
         dados = atributos.parse_args()
-        user = UserModel.find_by_login(dados['login'])            
-        is_password_valid = bcrypt.check_password_hash(str(user.senha),str(dados['senha']))
+        user = UserModel.find_by_login(dados['login'])
+        is_password_valid = bcrypt.check_password_hash(
+                user.senha,
+                str(dados['senha'])
+        )
+                               
         # safe_str_cmp, from werkzeug.security import safe_str_cmp 
         if user and is_password_valid:
             token_de_acessso = create_access_token(identity=user.user_id)
