@@ -15,10 +15,22 @@ from blacklist import BLACKLIST
 """
 
 atributos = reqparse.RequestParser()
-atributos.add_argument('login',
-        type=str, required=True, help='the field cannot be left blank')
-atributos.add_argument('senha',
-        type=str, required=True, help='the field cannot be left blank')
+
+atributos.add_argument(
+        'login',
+        type=str, 
+        required=True, 
+        help='the field cannot be left blank'
+)
+
+atributos.add_argument(
+        'senha',
+        type=str, 
+        required=True, 
+        help='the field cannot be left blank'
+)
+
+atributos.add_argument('ativado', type=bool)
 
 
 class User(Resource):
@@ -50,6 +62,7 @@ class UserRegister(Resource):
             return {'message': 
                     'The login "{}" already exists'.format(dados['login'])}, 400 
         user = UserModel(**dados)
+        user.ativado = False
         user.save_user()
         return {'message': 'User created successfully'}, 201
 
@@ -66,8 +79,10 @@ class UserLogin(Resource):
                                
         # safe_str_cmp, from werkzeug.security import safe_str_cmp 
         if user and is_password_valid:
-            token_de_acessso = create_access_token(identity=user.user_id)
-            return {'access_token': token_de_acessso}, 200
+            if user.ativado:
+                token_de_acessso = create_access_token(identity=user.user_id)
+                return {'access_token': token_de_acessso}, 200
+            return {'message': 'User not confirmed!'}, 400
         return {'message': 'The username or password is incorrect'}, 401
 
 
@@ -79,3 +94,23 @@ class UserLogout(Resource):
         if len(jwt_id) > 0:
             BLACKLIST.add(jwt_id)
         return {'message': 'Logged out successfuly!'}, 200
+
+
+class UserConfirm(Resource):
+    # /confirmacao/{user_id}
+    @classmethod 
+    def get(cls,user_id):
+        user = UserModel.find_user(user_id)
+
+        if not user:
+            return {
+                'message': "user id '{}' not found.".format(user_id)
+            }, 404
+        
+        user.ativado = True
+        user.save_user()
+        return {
+            'message': 'user id "{}" confirmed successfully.'.format(user_id)
+        }, 200
+
+

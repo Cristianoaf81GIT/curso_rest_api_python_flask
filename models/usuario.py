@@ -8,16 +8,18 @@ class UserModel(banco.Model):
     user_id = banco.Column(banco.Integer, primary_key=True)
     login = banco.Column(banco.String(40))
     senha = banco.Column(banco.String(200)) # garante tamanho para senha encriptada
+    ativado = banco.Column(banco.Boolean, default=False)
 
-    def __init__(self, login, senha):
+    def __init__(self, login, senha, ativado):
         self.login = login
         self.senha = bcrypt.generate_password_hash(senha).decode('utf-8')
-       
+        self.ativado = ativado       
 
     def json(self):
         return {
             'user_id': self.user_id,
-            'login': self.login        
+            'login': self.login,
+            'ativado': self.ativado
         }
 
     @classmethod
