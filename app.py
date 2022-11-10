@@ -13,7 +13,7 @@ from resources.site import Site, Sites
 from flask_jwt_extended import JWTManager
 from os import environ
 from blacklist import BLACKLIST
-# cont 4:03 aula 84
+
 app = Flask(__name__)
 app.config['FLASK_DEBUG'] = environ.get('APP_DEBUG_MODE') == 'True'
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URI')
@@ -45,6 +45,8 @@ api.add_resource(UserLogout, '/logout')
 api.add_resource(Sites, '/sites')
 api.add_resource(Site, '/sites/<string:url>')
 api.add_resource(UserConfirm, '/confirmacao/<int:user_id>')
+
+#
 
 if __name__ == "__main__":
     from sql_alchemy import banco
