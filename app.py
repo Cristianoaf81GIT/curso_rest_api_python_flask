@@ -46,7 +46,7 @@ api.add_resource(Sites, '/sites')
 api.add_resource(Site, '/sites/<string:url>')
 api.add_resource(UserConfirm, '/confirmacao/<int:user_id>')
 
-#
+# aula 88 continua em 2:55
 
 if __name__ == "__main__":
     from sql_alchemy import banco

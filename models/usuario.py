@@ -2,6 +2,13 @@
 from sql_alchemy import banco
 from flask_bcrypt_util import bcrypt
 from flask import request, url_for 
+import requests
+import os 
+
+MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN_NAME')
+MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
+FROM_EMAIL = os.environ.get('TITLE')
+FROM_TITLE = os.environ.get('FROM')
 
 class UserModel(banco.Model):
     __tablename__ = 'usuarios'
@@ -9,7 +16,7 @@ class UserModel(banco.Model):
     user_id = banco.Column(banco.Integer, primary_key=True)
     login = banco.Column(banco.String(40), nullable=True, unique=True)
     senha = banco.Column(banco.String(200), nullable=False) # garante tamanho para senha encriptada
-    email = banco.Column(banco.string(200), nullable=True, unique=True)
+    email = banco.Column(banco.String(200), nullable=True, unique=True)
     ativado = banco.Column(banco.Boolean, default=False)
 
     def __init__(self, login, senha, email, ativado):
@@ -23,6 +30,21 @@ class UserModel(banco.Model):
         link = (
                 request.url_root[:-1] + 
                 url_for('userconfirm', user_id=self.user_id)
+        )
+        return requests.post(
+                'https://api.mailgun.net/v3/{}/messages'
+                .format(MAILGUN_DOMAIN),
+                auth=('api', MAILGUN_API_KEY),
+                data={
+                    'from': '{} <{}>'.format(FROM_TITLE, FROM_EMAIL),
+                    'to': self.email,
+                    'subject': 'Confirmação de cadastro!',
+                    'text': 'Confirme seu cadastro clicando no link a seguir: {}'.format(link),
+                    'html': '<html>
+                        <p>Confirm seu cadastro clicando no link a seguir:\
+                                <a href="{}">Confirmar E-mail</a></p>
+                    </html>'.format(link)
+                }
         )
 
     def json(self):
