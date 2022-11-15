@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import traceback
 from flask_restful import Resource, reqparse
 from models.usuario import UserModel
 from flask_bcrypt_util import bcrypt 
@@ -30,6 +31,7 @@ atributos.add_argument(
         help='the field cannot be left blank'
 )
 
+atributos.add_argument('email', type=str)
 atributos.add_argument('ativado', type=bool)
 
 
@@ -58,12 +60,39 @@ class UserRegister(Resource):
     # /cadasto
     def post(self):       
         dados = atributos.parse_args()
+        
+        if (
+            not dados.get('email') or 
+            dados.get('email') is None
+        ):
+            return {
+                'message': "The field 'email' cannot be left blank!"
+            }, 400
+        
+        if UserModel.find_by_email(dados['email']):
+            return  {
+                'messsage': "the email '{}' already exists".format(dados['email'])
+            }, 400
+
         if UserModel.find_by_login(dados['login']):
-            return {'message': 
-                    'The login "{}" already exists'.format(dados['login'])}, 400 
+            return {
+                'message': 
+                    'The login "{}" already exists'.format(dados['login'])
+            }, 400 
+        
         user = UserModel(**dados)
         user.ativado = False
-        user.save_user()
+        
+        try:
+            user.save_user()
+            user.send_confirmation_email()
+        except:
+            user.delete_user()
+            traceback.print_exc()
+            return {
+                'message': 'An internal server error has been ocurred!'
+            }, 500
+
         return {'message': 'User created successfully'}, 201
 
 

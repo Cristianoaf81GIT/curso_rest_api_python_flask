@@ -40,10 +40,12 @@ class UserModel(banco.Model):
                     'to': self.email,
                     'subject': 'Confirmação de cadastro!',
                     'text': 'Confirme seu cadastro clicando no link a seguir: {}'.format(link),
-                    'html': '<html>
-                        <p>Confirm seu cadastro clicando no link a seguir:\
-                                <a href="{}">Confirmar E-mail</a></p>
-                    </html>'.format(link)
+                    'html': """
+                        <html>
+                            <p>Confirm seu cadastro clicando no link a seguir:
+                            <a href="{}">Confirmar E-mail</a></p>
+                        </html>
+                    """.format(link)
                 }
         )
 
@@ -76,3 +78,10 @@ class UserModel(banco.Model):
     def delete_user(self):
         banco.session.delete(self)
         banco.session.commit()
+
+    @classmethod
+    def find_by_email(cls, email):
+        user = cls.query.filter_by(email=email).first()
+        if user:
+            return user
+        return None
