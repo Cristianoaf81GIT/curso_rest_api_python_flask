@@ -81,7 +81,7 @@ class UserModel(banco.Model):
 
     @classmethod
     def find_by_email(cls, email):
-        user = cls.query.filter_by(email=email).first()
+        user = cls.query.filter_by(email=email).first()        
         if user:
             return user
         return None

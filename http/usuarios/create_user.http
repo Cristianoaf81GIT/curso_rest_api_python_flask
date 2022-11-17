@@ -1,9 +1,10 @@
 POST http://localhost:5000/cadastro HTTP/1.1
 Host: localhost:5000
 Content-Type: application/json
-Content-Length: 46
+Content-Length: 89
 
 {
-  "login": "admin",
-  "senha": "123456"
+  "login": "cristiano faria",
+  "senha": "123456",
+  "email": "cristianoaf81@hotmail.com"
 }
